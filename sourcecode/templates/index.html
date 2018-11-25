@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/index.css') }}">
+		<meta charset="utf-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<title>NASA API Applications</title>
+	</head>
+	
+	<body>	
+		<div class="logo">
+			<img src="{{ url_for('static', filename='logo.jpg') }}" width="150" height="100">
+		</div>
+		
+		<br>
+		
+		<hr>
+		
+		<div class="page_title">
+			<h1>NASA API Applications</h1>		
+		</div>
+		
+		<hr>
+		
+		<br>
+		<br>
+		
+		<a style="text-decoration:none;" href="/index/apod/apod.html">
+			<div class="header1">
+				<h3>NASA Astronomy Pictures of the Day.</h3>
+				<h4>Credit: https://apod.nasa.gov/apod/astropix.html</h4>
+			</div>
+		</a>
+		
+		<br>
+		<br>
+		<br>
+		
+		<a style="text-decoration:none;" href="/index/neows/neows.html">
+		<div class="header2">
+			<h3>Near Earth Object Web Service</h3>
+			<h4>Credit: https://cneos.jpl.nasa.gov/</h4>
+		</div>
+		</a>
+	</body>
+</html>
+

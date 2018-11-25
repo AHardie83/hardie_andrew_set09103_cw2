@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/login.css') }}">
+	</head>
+	<body>
+
+		<h2>Login Form</h2>
+
+		<form name="login_form" action="" method="post">
+		  <div class="imgcontainer">
+	            <img src="{{ url_for('static', filename='logo.jpg') }}">
+		  </div>
+
+		<label class="emailLabel" for="email"><b>Username</b></label>
+		  <div class="container">
+		    <input type="text" placeholder="Enter Email" name="email" required>
+		  </div>
+		    <label class="passwordLabel" for="password"><b>Password</b></label>
+		  <div class="container">
+		    <input type="password" placeholder="Enter Password" name="password" required>
+        
+		    <button type="submit" class="btn" name="button" value="login">Login</button>
+		  </div>
+		</form>
+
+	</body>
+</html>
+
+		

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/apod.css') }}">
+		<meta charset="utf-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<title>APOD call</title>
+	</head>
+	
+	<body onload="defaultLoad()">
+	
+		<ul>
+			<li><a class="active" href="http://set09103.napier.ac.uk:9135/index.html">Exit APOD API</a></li>
+		</ul>
+
+		<div class="page_title">
+			<h1>NASA Picture of the Day Archive Search</h1>		
+
+			<input type="date" id="myDate" value="2014-02-09">
+
+			<button onclick="myFunction()">Search</button>
+			</div>
+		<hr>
+		
+		<div class="nasa_image">
+			<h3 id="apod_date"></h3>
+			<a href="apod_url" onclick="location.href=imageUrl;return false;">Click here for full resolution image</a></a>
+			<br><br/>
+			<img id="apod_img_id" width="25%"/>
+  
+			<p id="copyright"></p>
+		</div>
+		
+		<hr>
+		
+		<div class="apodtitle" color="white">
+			<h3 id="apod_title"></h3>
+		</div>
+		
+		<p id="apod_explaination"</p>
+		<br/>
+
+		
+	<script>		
+		var counter = 0;
+		counter = document.cookie;
+		
+		if(counter == 0)
+		{
+			alert("If you experience issues with the date picker not working then please use Firefox to run this page as there are current known issues with Chrome");
+			counter = 1;
+			counter = document.cookie;
+		}
+		
+
+		var cooky = document.cookie;
+		var url;
+		var chosenDate;
+		var defaultUrl = cooky;
+		var imageUrl;
+	
+		if (cooky == "")
+		{
+			defaultUrl = "https://api.nasa.gov/planetary/apod?api_key=NNKOjkoul8n1CH18TWA9gwngW1s1SmjESPjNoUFo";
+		}
+		
+	function defaultLoad() {
+		$.ajax({
+		url: defaultUrl,
+		success: function(result){
+		if("copyright" in result) {
+			$("#copyright").text("Image Credits: " + result.copyright);
+		}
+		else {
+			$("#copyright").text("Image Credits: " + "Public Domain");
+		}
+  
+		if(result.media_type == "video") {
+			$("#apod_img_id").css("display", "none"); 
+			$("#apod_vid_id").attr("src", result.url);
+		}
+		else {
+			$("#apod_vid_id").css("display", "none"); 
+			$("#apod_img_id").attr("src", result.url);
+		}
+
+		$("#returnObject").text(JSON.stringify(result, null, 4));  
+		$("#apod_explaination").text(result.explanation);
+		$("#apod_title").text(result.title);
+		$("#apod_date").text("Result Date: " + result.date);
+		$("#apod_url").text(result.url);
+		imageUrl = result.hdurl;
+		}
+		});
+		}
+
+		function myFunction() {
+			var x = document.getElementById("myDate").value;
+			chosenDate = x;
+			setUrl();
+		}
+
+		function setUrl() {
+			var nasaUrl = "https://api.nasa.gov/planetary/apod?";
+			var datePick = "date=" + chosenDate;
+			var remainingApiUrl = "&api_key=";
+			var apiKey = "NNKOjkoul8n1CH18TWA9gwngW1s1SmjESPjNoUFo";
+			url = nasaUrl + datePick + remainingApiUrl + apiKey;
+			openUrl();
+		}
+
+		function openUrl() {
+			$.ajax({
+				APIurl: defaultUrl,
+				success: function(result){
+				if("copyright" in result) {
+				$("#copyright").text("Image Credits: " + result.copyright);
+			}
+			else {
+				$("#copyright").text("Image Credits: " + "Public Domain");
+			}
+  
+			if(result.media_type == "video") {
+				$("#apod_img_id").css("display", "none"); 
+				$("#apod_vid_id").attr("src", result.url);
+			}
+			else {
+				$("#apod_vid_id").css("display", "none"); 
+				$("#apod_img_id").attr("src", result.url);
+			}
+			$("#reqObject").text(url);
+			$("#returnObject").text(JSON.stringify(result, null, 4));  
+			$("#apod_explaination").text(result.explanation);
+			$("#apod_title").text(result.title);
+			}
+			});
+			document.cookie = url;
+			window.open("http://set09103.napier.ac.uk:9135/index/apod/apod.html","_self");
+		}
+		</script> 
+		</body>
+</html>
+

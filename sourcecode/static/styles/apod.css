@@ -1,0 +1,66 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: blue;
+}
+
+.active {
+    background-color: red;
+}
+
+.page_title {
+	text-align: center;
+	color: white;
+}
+
+.nasa_image {
+	text-align: center;
+	color: white;
+}
+
+.apodtitle {
+	text-align: center;
+	color: white;
+}
+
+#apod_explaination {
+	color: white;
+}
+
+#returnObject {
+	color: white;
+}
+
+body {
+    background-color: black;
+}
+
+h1 {
+    color: white;
+}
+
+h2 {
+    color: white;
+}
+
+h3 {
+    color: white;
+}
